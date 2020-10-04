@@ -26,7 +26,7 @@ ggplot(data_summ, aes(x=daySum))+ geom_histogram(color="black", fill="yellow")+
         labs(title = "Histogram of steps taken each day", x= "Number of steps", y="Occurrence")
 ```
 
-![](PA1_template_files/figure-html/library-1.png)<!-- -->
+![](PA1_template_files/figure-html/Histogram1-1.png)<!-- -->
 
 ```r
 steps_Mean <- mean(data_summ$daySum, na.rm = TRUE)
@@ -44,7 +44,7 @@ data_daily <- summarise(data_gr2, dailyPattern = mean(steps, na.rm = TRUE))
 ggplot(data_daily, aes(interval, dailyPattern))+geom_line(size =0.8, color = "darkgreen") + labs(title = "Average daily activity pattern", x= "Time interval", y="Number of steps")
 ```
 
-![](PA1_template_files/figure-html/unnamed-chunk-1-1.png)<!-- -->
+![](PA1_template_files/figure-html/Averagedaily1-1.png)<!-- -->
 
 ```r
 maxInterval <- data_daily$interval[which.max(data_daily$dailyPattern)]
@@ -78,7 +78,7 @@ ggplot(data_summ3, aes(x=daySum))+ geom_histogram(color="black", fill="yellow")+
         labs(title = "Histogram of steps taken each day_missing repleaced", x= "Number of steps", y="Occurrence")
 ```
 
-![](PA1_template_files/figure-html/unnamed-chunk-3-1.png)<!-- -->
+![](PA1_template_files/figure-html/Histogram2-1.png)<!-- -->
 
 ```r
 steps_Mean3 <- round(mean(data_summ3$daySum),digits = 2)
@@ -98,5 +98,5 @@ data_daily_w <- summarise(data_gr_w, dailyPattern = mean(steps, na.rm = TRUE))
 ggplot(data_daily_w, aes(interval, dailyPattern))+geom_line(size =0.8, color = "darkmagenta")+ facet_grid(day_type ~.) + labs(title = "Average daily activity pattern during weekdays and weekends", x= "Time interval", y="Number of steps") 
 ```
 
-![](PA1_template_files/figure-html/unnamed-chunk-4-1.png)<!-- -->
+![](PA1_template_files/figure-html/Averagedaily2-1.png)<!-- -->
 

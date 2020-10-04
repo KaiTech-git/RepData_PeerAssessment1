@@ -17,7 +17,7 @@ data$date<- as.Date(data$date, "%Y-%m-%d")
 
 ## What is mean total number of steps taken per day?
 Calculating mean of total numbers of steps per day:
-```{r library,  message=FALSE}
+```{r Histogram1,  message=FALSE}
 library(dplyr)
 library(ggplot2)
 data_gr <- group_by(data,date)
@@ -32,7 +32,7 @@ Median of total number of steps per day: **`r steps_Med`**
 
 ## What is the average daily activity pattern?
 Calculating average daily activity pattern
-```{r message=FALSE}
+```{r Averagedaily1, message=FALSE}
 data_gr2 <- group_by(data,interval)
 data_daily <- summarise(data_gr2, dailyPattern = mean(steps, na.rm = TRUE))
 ggplot(data_daily, aes(interval, dailyPattern))+geom_line(size =0.8, color = "darkgreen") + labs(title = "Average daily activity pattern", x= "Time interval", y="Number of steps")
@@ -58,7 +58,7 @@ data2 <- Rplace_na(data2, data_daily)
 ```
 Total number of missing values in the dataset: `r Na_values` 
 
-```{r message=FALSE}
+```{r Histogram2, message=FALSE}
 data_gr3 <- group_by(data2,date)
 data_summ3 <- summarise(data_gr3, daySum = sum(steps))
 ggplot(data_summ3, aes(x=daySum))+ geom_histogram(color="black", fill="yellow")+ 
@@ -70,7 +70,7 @@ Mean of total number of steps per day: **`r steps_Mean3`**
 Median of total number of steps per day: **`r steps_Med3`**  
 ## Are there differences in activity patterns between weekdays and weekends?
 
-```{r message=FALSE}
+```{r Averagedaily2, message=FALSE}
 data_w <- mutate(data2, day_type = if_else(weekdays(date) == "Saturday" | weekdays(date)== "Sunday", "weekend", "weekday"))
 data_w$day_type<- as.factor(data_w$day_type)
 data_gr_w <- group_by(data_w,interval, day_type)
